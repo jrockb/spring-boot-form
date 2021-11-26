@@ -12,15 +12,15 @@
 			<div>
 				<input type="text" id="username" th:field="*{username}"> <!-- th:field extrae el atributo del objeto th:object -->
 			</div>
-			<div th:if="${error != null && error.containsKey('username')}" th:text="${error.username}"></div><!-- valida si en el mapa existe la llave con el error de username -->
-		</div>
+			<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><!-- valida si en el mapa existe la llave con el error de username -->
+		</div> <!-- #fields.hasErrors() es un metodo helper de thymeleaf -->
 		
 		<div>
 			<label for="password">Password</label>
 			<div>
 				<input type="password" th:field="*{password}" id="password">
 			</div>
-			<div th:if="${error != null && error.containsKey('password')}" th:text="${error.password}"></div>
+			<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 		</div>
 		
 		<div>
@@ -28,7 +28,7 @@
 			<div>
 				<input type="text" th:field="*{email}" id="email">
 			</div>
-			<div th:if="${error != null && error.containsKey('email')}" th:text="${error.email}"></div>
+			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 		</div>
 		
 		<div>

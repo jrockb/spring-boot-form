@@ -1,8 +1,5 @@
 package co.com.jcd.springboot.form.app.controllers;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -46,14 +43,19 @@ public class FormController {
 	@PostMapping("/form")
 	public String procesar(@Valid Usuario usuario, BindingResult result, Model model) {	// retorna el resultado de la validacion, siempre va despues del objeto a validar
 		
+//		if(result.hasErrors()) {
+//			Map<String, String> errores = new HashMap<>();
+//			result.getFieldErrors().forEach(err ->{ 
+//				errores.put(err.getField(), "El campo ".concat(err.getField()).concat(" ").concat(err.getDefaultMessage()));
+//			}); //getFieldErrors es una lista que se itera en este ejemplo con una funcion lambda
+//			model.addAttribute("error",errores);
+//			return "form";
+//		}
+//		
+// MANEJO DE ERRORES CON SPRING:
 		if(result.hasErrors()) {
-			Map<String, String> errores = new HashMap<>();
-			result.getFieldErrors().forEach(err ->{ 
-				errores.put(err.getField(), "El campo ".concat(err.getField()).concat(" ").concat(err.getDefaultMessage()));
-			}); //getFieldErrors es una lista que se itera en este ejemplo con una funcion lambda
-			model.addAttribute("error",errores);
-			return "form";
-		}
+			return "form"; // thymeleaf maneja los errores en la vista
+		}		
 		
 		model.addAttribute("titulo", "Resultado Form");
 		model.addAttribute("usuario", usuario); // se recibe el ususario desde el front
