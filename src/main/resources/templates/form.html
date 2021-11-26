@@ -6,11 +6,11 @@
 </head>
 <body>
 	<h3 th:text="${titulo}"></h3>
-	<form th:action="@{/form}" method="post">
+	<form th:action="@{/form}" th:object="${usuario}" method="post"> <!-- todos los campos del formulario son atributos de este objeto, que viene del controlador -->
 		<div>
 			<label for="username">Username</label>
 			<div>
-				<input type="text" name="username" id="username">
+				<input type="text" id="username" th:field="*{username}"> <!-- th:field extrae el atributo del objeto th:object -->
 			</div>
 			<div th:if="${error != null && error.containsKey('username')}" th:text="${error.username}"></div><!-- valida si en el mapa existe la llave con el error de username -->
 		</div>
@@ -18,7 +18,7 @@
 		<div>
 			<label for="password">Password</label>
 			<div>
-				<input type="password" name="password" id="password">
+				<input type="password" th:field="*{password}" id="password">
 			</div>
 			<div th:if="${error != null && error.containsKey('password')}" th:text="${error.password}"></div>
 		</div>
@@ -26,7 +26,7 @@
 		<div>
 			<label for="email">Email</label>
 			<div>
-				<input type="text" name="email" id="email">
+				<input type="text" th:field="*{email}" id="email">
 			</div>
 			<div th:if="${error != null && error.containsKey('email')}" th:text="${error.email}"></div>
 		</div>
