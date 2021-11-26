@@ -1,19 +1,23 @@
 package co.com.jcd.springboot.form.app.models.domain;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class Usuario {
 	
 	private String identificador; // no se valida ya que no va estar dentro del formulario
-	@NotEmpty
+	@NotEmpty(message = "el nombre no puede ser vacío") // personalización de mensajes
 	private String nombre;
-	@NotEmpty
+	@NotEmpty(message = "el apellido no puede ser vacío") 
 	private String apellido;	
-	@NotEmpty
+	@NotEmpty(message = "el username no puede ser vacío") 
+	@Size(min=3, max=8, message = "el username debe tener entre 3 y 8 caracteres") 
 	private String username;
-	@NotEmpty
+	@NotEmpty(message = "el password no puede ser vacío") 
 	private String password;
-	@NotEmpty
+	@NotEmpty(message = "el email no puede ser vacío") 
+	@Email(message = "no es un correo válido")  // para validar el correo 
 	private String email;
 
 	public String getUsername() {
