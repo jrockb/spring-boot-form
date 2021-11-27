@@ -9,15 +9,14 @@ public class Usuario {
 	private String identificador; // no se valida ya que no va estar dentro del formulario
 	@NotEmpty(message = "el nombre no puede ser vacío") // personalización de mensajes
 	private String nombre;
-	@NotEmpty(message = "el apellido no puede ser vacío") 
+	@NotEmpty
 	private String apellido;	
-	@NotEmpty(message = "el username no puede ser vacío") 
+	@NotEmpty
 	@Size(min=3, max=8, message = "el username debe tener entre 3 y 8 caracteres") 
 	private String username;
-	@NotEmpty(message = "el password no puede ser vacío") 
+	@NotEmpty
 	private String password;
-	@NotEmpty(message = "el email no puede ser vacío") 
-	@Email(message = "no es un correo válido")  // para validar el correo 
+	@Email
 	private String email;
 
 	public String getUsername() {
