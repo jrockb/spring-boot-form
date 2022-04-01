@@ -21,7 +21,7 @@ public class FormController {
 		Usuario usuario = new Usuario();
 		usuario.setNombre("Jonny"); // para enviar información por defecto
 		usuario.setApellido("Bernal");
-		usuario.setIdentificador("1234567CC"); // esta información se pierde si se envia a la vista, esto se soluciona con @SessionAttributes
+		usuario.setIdentificador("123.456.789-C"); // esta información se pierde si se envia a la vista, esto se soluciona con @SessionAttributes
 		
 		model.addAttribute("titulo", "Vista Form");
 		model.addAttribute("usuario", usuario); // porque se puede dar un nullPointerException cuando se refresca la vista
