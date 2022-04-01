@@ -2,15 +2,15 @@ package co.com.jcd.springboot.form.app.models.domain;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
+//import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Usuario {
 	
-	@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}") // validación por expresión regular
+	//@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}") // validación por expresión regular
 	private String identificador;
 	
-	@NotEmpty(message = "el nombre no puede ser vacío") // personalización de mensajes
+	//@NotEmpty(message = "el nombre no puede ser vacío") // personalización de mensajes
 	private String nombre;
 	
 	@NotEmpty

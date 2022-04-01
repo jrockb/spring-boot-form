@@ -2,6 +2,7 @@ package co.com.jcd.springboot.form.app.controllers;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,10 +12,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import co.com.jcd.springboot.form.app.models.domain.Usuario;
+import co.com.jcd.springboot.form.app.validators.UsuarioValidador;
 
 @Controller
 @SessionAttributes("usuario") // todos los datos de este objeto se mantendran en memoria independientemente si se usan en el formulario
 public class FormController {	
+	
+	@Autowired
+	private UsuarioValidador validador;
 	
 	@GetMapping("/form")
 	public String form(Model model) {
@@ -51,6 +56,7 @@ public class FormController {
 	@PostMapping("/form")
 	public String procesar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) {	// retorna el resultado de la validacion, siempre va despues del objeto a validar
 		
+		validador.validate(usuario, result); // para validar los campos por medio de la clase UsuarioValidador
 //		if(result.hasErrors()) {
 //			Map<String, String> errores = new HashMap<>();
 //			result.getFieldErrors().forEach(err ->{ 
