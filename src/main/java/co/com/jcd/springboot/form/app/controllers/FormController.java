@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -20,6 +22,13 @@ public class FormController {
 	
 	@Autowired
 	private UsuarioValidador validador;
+	
+	// para que Spring valide transparentmente
+	@InitBinder
+	public void initBindir(WebDataBinder binder) {
+		//binder.setValidator(validador); // por debajo hará las validaciones, con el metodo set reemplazará las validaciones con anotaciones
+		binder.addValidators(validador); // permite agregar validadores con anotaciones
+	}
 	
 	@GetMapping("/form")
 	public String form(Model model) {
@@ -56,7 +65,7 @@ public class FormController {
 	@PostMapping("/form")
 	public String procesar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) {	// retorna el resultado de la validacion, siempre va despues del objeto a validar
 		
-		validador.validate(usuario, result); // para validar los campos por medio de la clase UsuarioValidador
+		//validador.validate(usuario, result); // para validar los campos por medio de la clase UsuarioValidador
 //		if(result.hasErrors()) {
 //			Map<String, String> errores = new HashMap<>();
 //			result.getFieldErrors().forEach(err ->{ 

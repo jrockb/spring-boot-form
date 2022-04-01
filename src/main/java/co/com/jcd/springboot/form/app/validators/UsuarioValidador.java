@@ -19,7 +19,7 @@ public class UsuarioValidador implements Validator {
 	public void validate(Object target, Errors errors) {
 		Usuario usuario = (Usuario) target;
 		// usando la clase utilidades de validación de Spring
-		ValidationUtils.rejectIfEmpty(errors, "nombre", "NotEmpty.usuario.nombre");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "Requerido.usuario.nombre"); // para que rechace tambien espacios en blanco
 		/**
 		 * alternativa:
 		 * if(usuario.getNombre().isEmpty()){

@@ -1,6 +1,7 @@
 package co.com.jcd.springboot.form.app.models.domain;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -16,7 +17,7 @@ public class Usuario {
 	@NotEmpty
 	private String apellido;	
 	
-	@NotEmpty
+	@NotBlank // valida si el campo quedó vacío
 	@Size(min=3, max=8, message = "el username debe tener entre 3 y 8 caracteres") 
 	private String username;
 	
