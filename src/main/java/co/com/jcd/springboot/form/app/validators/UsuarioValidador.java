@@ -17,7 +17,7 @@ public class UsuarioValidador implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		Usuario usuario = (Usuario) target;
+		//Usuario usuario = (Usuario) target; //no es necesario ya que se está validando este caso con la anotación creada
 		// usando la clase utilidades de validación de Spring
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "Requerido.usuario.nombre"); // para que rechace tambien espacios en blanco
 		/**
@@ -25,12 +25,12 @@ public class UsuarioValidador implements Validator {
 		 * if(usuario.getNombre().isEmpty()){
 		 * 		errors.rejectValue("nombre", "NotEmpty.usuario.nombre");
 		 * }
-		 */
+		 
 		// validación de expresón regular
 		if(!usuario.getIdentificador().matches("[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")) {
 			errors.rejectValue("identificador", "Pattern.usuario.identificador");
 		}
-		
+		*/
 		
 		
 	}
